@@ -27,9 +27,9 @@ class HomeController extends Controller
         return view('home');
     }
 
-     public function handleAdmin()
+    public function handleAdmin()
     {
-        $users = User::where("is_admin","!=" , 1)->get();
+        $users = User::where("is_admin", "!=", 1)->get();
 
         return view('handleAdmin', compact('users'));
     }
@@ -38,13 +38,13 @@ class HomeController extends Controller
     {
         $user = User::find($id);
 
-         return response()->json(['status' => 'success'
+        return response()->json(['status' => 'success'
             , 'user' => $user]);
     }
 
     public function updateUser(Request $request, $id)
     {
-          $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email',
         ]);
@@ -57,9 +57,11 @@ class HomeController extends Controller
             , 'user' => $user]);
     }
 
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $user = User::find($id);
         $user->delete();
         return response()->json(['status' => 'success']);
     }
+
 }

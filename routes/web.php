@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,5 +23,6 @@ Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'handleAdm
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/user/{userId}', [App\Http\Controllers\HomeController::class, 'getUser'])->name('admin.getUser')->middleware('admin');
+Route::post('/packs', [App\Http\Controllers\PacksController::class, 'getPacks'])->name('admin.user.getPacks');
 Route::post('/user/{userId}', [App\Http\Controllers\HomeController::class, 'updateUser'])->name('admin.user.update')->middleware('admin');
 Route::delete('/user/{userId}', [App\Http\Controllers\HomeController::class, 'deleteUser'])->name('admin.user.destroy')->middleware('admin');
